@@ -165,7 +165,7 @@ def extended_euclidean(a, b, info_print=True):
 # chinese remainder theorem
 # # # # # # # # # # # # # # 
 
-def CRT_pair(remainder, modulus, info_print=True):
+def CRT_pairwise(remainder, modulus, info_print=True):
 	gcd, x, y = extended_euclidean(modulus[0],modulus[1],info_print=False)
 	
 	if modulus[0] > modulus[1]:
@@ -196,16 +196,18 @@ def CRT_pair(remainder, modulus, info_print=True):
 		exit()
 
 	return (c, m)
-
-def CRT_full(remainders, moduli, info_print=True):
+	
+# takes two vectors of moduli and remainders of equal length, 
+# computes the 'c' that satisifies all congruences
+def CRT_full_version(remainders, moduli, info_print=True):
 	if len(remainders) != len(moduli):
 		print("Mismatch in number of arguments")
 		return
 
-	c,m = CRT_pair((remainders[0],remainders[1]),(moduli[0],moduli[1]),info_print)
+	c,m = CRT_pairwise((remainders[0],remainders[1]),(moduli[0],moduli[1]),info_print)
 
 	for i in range(2,len(moduli)):
-		c,m = CRT_pair((c,remainders[i]),(m,moduli[i]),info_print)
+		c,m = CRT_pairwise((c,remainders[i]),(m,moduli[i]),info_print)
 
 	return c
 
