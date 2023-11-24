@@ -63,9 +63,9 @@ def combine_duplicates(factors):
 
 def prime_factor(n,primes,prime_squares=False):
 
-	while(max([p for p in primes]) < math.sqrt(n)):
+	while(max(primes) < math.sqrt(n)):
 		print("\n\n\n\t\tHad to get more primes :(\n\n\n")
-		primes = list(set(primes) | set(primeFind(max([p for p in primes]) * 2 )))
+		primes = list(set(primes) | set(primeFind(max(primes) * 2 )))
 
 	debug_print(f"Factorization of {n:_}:")
 
@@ -245,7 +245,7 @@ def dijkstra(distance_matrix,start_node,goal_node):
 		# find the unexplored x with the smallest value D[x]
 		x = find_smallest_unexplored_node(D,B,counter)
 
-		if x is False:
+		if x is EXPLORED:
 			debug_print(f"All nodes have been explored\n")
 			break
 
