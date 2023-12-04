@@ -284,7 +284,7 @@ def find_smallest_unexplored_node(D,B,counter):
 
 	# if the final x is already explored
 	if B[x] == EXPLORED:
-		return False
+		return EXPLORED
 
 	return x
 
@@ -315,7 +315,7 @@ def a_star_search(distance_matrix,heuristic_array,start_node,goal_node):
 		# find the unexplored x with the smallest value D[x]
 		x = find_smallest_unexplored_node(H,B,counter)
 
-		if x is False:
+		if x is EXPLORED:
 			debug_print(f"All nodes have been explored\n")
 			break
 
